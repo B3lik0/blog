@@ -1,0 +1,79 @@
+networks:
+  laravel_network:
+services:
+  server:
+    build:
+      context: .
+      dockerfile: docker/dockerfiles/nginx.dockerfile
+    ports:
+      - 8080:80
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - php
+      - mysql
+    container_name: laravel_server
+    networks:
+      - laravel_network
+
+  php:
+    build:
+      context: .
+      dockerfile: docker/dockerfiles/php.dockerfile
+    volumes:
+      - ./src:/var/www/html:delegated
+    container_name: laravel_php
+    networks:
+      - laravel_network
+
+  mysql:
+    image: mysql:8.0.1
+    restart: unless-stopped
+    tty: true
+    container_name: laravel_mysql
+    env_file:
+      - docker/mysql/.env
+    ports:
+      - 3306:3306
+    networks:
+      - laravel_network
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    container_name: laravel_phpmyadmin
+    depends_on:
+      - mysql
+    ports:
+      - 8090:80
+    environment:
+      - PMA_HOST=mysql
+      - PMA_USER=root
+      - PMA_PASSWORD=root
+    networks:
+      - laravel_network
+
+  composer:
+    build:
+      # container_name: laravel_composer
+      context: .
+      dockerfile: docker/dockerfiles/composer.dockerfile
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - php
+    networks:
+      - laravel_network
+
+  artisan:
+    build:
+      # container_name: laravel_artisan
+      context: .
+      dockerfile: docker/dockerfiles/php.dockerfile
+    volumes:
+      - ./src:/var/www/html
+    entrypoint: ["php", "/var/www/html/artisan"]
+    networks:
+      - laravel_network

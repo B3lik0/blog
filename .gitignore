@@ -1,0 +1,113 @@
+# =========================
+# Laravel & PHP
+# =========================
+/vendor/
+/node_modules/
+/public/storage
+/public/hot
+/public/build
+/storage/*.key
+/storage/logs/*.log
+/storage/framework/cache/data/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/app/public/*
+.env
+.env.backup
+.env.production
+.env.local
+.env.testing
+.phpunit.result.cache
+.phpactor.json
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+auth.json
+composer.lock
+
+# =========================
+# Docker & Containers
+# =========================
+mysql_data/
+/docker/mysql/data/
+.dockerignore
+docker-compose.override.yml
+
+# =========================
+# IDEs & Editors
+# =========================
+/.idea/
+/.vscode/
+/.fleet/
+/.nova/
+/.zed/
+*.swp
+*.swo
+*~
+
+# =========================
+# OS Generated Files
+# =========================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# =========================
+# Logs & Temporary Files
+# =========================
+*.log
+*.tmp
+*.temp
+*.bak
+*.backup
+*.cache
+
+# =========================
+# Database Files
+# =========================
+*.sql
+*.sqlite
+*.sqlite3
+*.db
+
+# =========================
+# Archive & Compressed Files
+# =========================
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# =========================
+# Build & Distribution
+# =========================
+/dist/
+/build/
+/public/mix-manifest.json
+
+# =========================
+# Package Managers
+# =========================
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# =========================
+# Laravel Specific
+# =========================
+/.phpunit.cache
+/storage/pail
+/bootstrap/cache/*.php
+!/bootstrap/cache/.gitignore
+
+# =========================
+# Project Specific
+# =========================
+# Agrega aquí archivos específicos de tu proyecto
